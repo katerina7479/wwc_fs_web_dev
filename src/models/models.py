@@ -1,18 +1,18 @@
-from django.db import models
-
-# Create your models here.
+import cuid
 from django.db import models
 from django.contrib.postgres.fields import ArrayField
-import cuid
+
+from src.models.validators import validate_days_of_week, day_abbreviations
 
 
+# Create your models here.
 # Location model
 class Location(models.Model):
     id = models.CharField(primary_key=True, default=cuid.cuid, max_length=25, editable=False)
     name = models.CharField(max_length=255)
     logo = models.ImageField(upload_to='logos/')
     address = models.TextField()
-    phone = models.CharField(max_length=15)
+    phone = models.CharField(max_length=30)
     deletedAt = models.DateTimeField(null=True, blank=True)
     createdAt = models.DateTimeField(auto_now_add=True)
     updatedAt = models.DateTimeField(auto_now=True)
@@ -53,7 +53,7 @@ class MenuItem(models.Model):
 # MenuSection model
 class MenuSection(models.Model):
     id = models.CharField(primary_key=True, default=cuid.cuid, max_length=25, editable=False)
-    name = models.CharField(max_length=255)
+    name = models.CharField(max_length=255, unique=True)
 
     class Meta:
         db_table = 'menu_section'
@@ -65,7 +65,10 @@ class Schedule(models.Model):
     location = models.ForeignKey(Location, on_delete=models.CASCADE)
     menu = models.ForeignKey(Menu, on_delete=models.CASCADE)
     name = models.CharField(max_length=255)
-    days_of_week = ArrayField(models.CharField(max_length=10), blank=True, null=True)
+    days_of_week = ArrayField(
+        models.CharField(max_length=3, choices=[(d, d) for d in day_abbreviations]),
+        validators=[validate_days_of_week], null=True, blank=True
+    )
     date = models.DateField(null=True, blank=True)
     start_time = models.TimeField()
     end_time = models.TimeField()
@@ -76,3 +79,7 @@ class Schedule(models.Model):
 
     class Meta:
         db_table = 'schedule'
+
+    def save(self, *args, **kwargs):
+        self.days_of_week = sorted(self.days_of_week, key=lambda day: day_abbreviations.index(day))
+        super().save(*args, **kwargs)
