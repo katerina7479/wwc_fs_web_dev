@@ -17,6 +17,9 @@ class Location(models.Model):
     createdAt = models.DateTimeField(auto_now_add=True)
     updatedAt = models.DateTimeField(auto_now=True)
 
+    class Meta:
+        db_table = 'location'
+
 
 # Menu model
 class Menu(models.Model):
@@ -27,6 +30,8 @@ class Menu(models.Model):
     createdAt = models.DateTimeField(auto_now_add=True)
     updatedAt = models.DateTimeField(auto_now=True)
 
+    class Meta:
+        db_table = 'menu'
 
 # MenuItem model
 class MenuItem(models.Model):
@@ -40,12 +45,16 @@ class MenuItem(models.Model):
     createdAt = models.DateTimeField(auto_now_add=True)
     updatedAt = models.DateTimeField(auto_now=True)
 
+    class Meta:
+        db_table = 'menu_item'
 
 # MenuSection model
 class MenuSection(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=255)
 
+    class Meta:
+        db_table = 'menu_section'
 
 # Schedule model
 class Schedule(models.Model):
@@ -61,3 +70,6 @@ class Schedule(models.Model):
     deletedAt = models.DateTimeField(null=True, blank=True)
     createdAt = models.DateTimeField(auto_now_add=True)
     updatedAt = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        db_table = 'schedule'
