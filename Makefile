@@ -10,9 +10,6 @@ schema_migration:
 list:
 	docker-compose ps
 
-bash:
-	docker-compose exec web /bin/bash
-
 nuke:
 	docker-compose down
 	docker volume rm wwc_fs_web_dev_pgdata
