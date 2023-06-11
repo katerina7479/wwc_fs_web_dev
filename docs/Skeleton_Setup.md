@@ -59,3 +59,41 @@ services:
 
 2. Create the app:
    `python manage.py startapp src`
+
+### Set up the Database
+We're using postgres, not sqlite. Let's get a docker db running locally. 
+
+1. Modify the docker-compose.yml to add:
+```yml
+  db:
+    image: postgres:15.3
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=mys3cretpassw0rd!
+      - POSTGRES_DB=restaurant
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+    pgdata:
+```
+
+2. Update requirements to add `psycopg2`
+   `pip install psycopg2`
+   `pip freeze > requirements.txt`
+
+3. Update the settings.py file, add:
+```python
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'restaurant',
+        'USER': 'postgres',
+        'PASSWORD': 'mys3cretpassw0rd',
+        'HOST': 'db',
+        'PORT': 5432,
+    }
+}
+```
+4. Build it!
+`docker-compose up --build`
