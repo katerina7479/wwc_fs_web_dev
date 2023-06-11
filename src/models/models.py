@@ -81,5 +81,7 @@ class Schedule(models.Model):
         db_table = 'schedule'
 
     def save(self, *args, **kwargs):
-        self.days_of_week = sorted(self.days_of_week, key=lambda day: day_abbreviations.index(day))
+        self.days_of_week = sorted(
+            self.days_of_week,
+            key=lambda day: day_abbreviations.index(day))
         super().save(*args, **kwargs)

@@ -1,5 +1,6 @@
 import calendar
 from django.core.exceptions import ValidationError
+
 day_abbreviations = list(calendar.day_abbr)
 
 
