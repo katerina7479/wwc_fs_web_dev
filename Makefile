@@ -6,5 +6,5 @@ migrate:
 
 nuke:
 	docker-compose down
-	docker volume rm wwc_fs_web_dev
-	docker rmi wwc_fs_web_dev
+	docker volume rm wwc_fs_web_dev_pgdata
+	docker rmi wwc_fs_web_dev-web

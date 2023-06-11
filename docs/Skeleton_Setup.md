@@ -30,12 +30,13 @@ FROM python:3.9
 
 ENV PTYHONBUFFERED 1
 
-RUN mkdir /src
-WORKDIR /src
-COPY requirements.txt /src/
+COPY requirements.txt .
 RUN pip install -r requirements.txt
-COPY . /src/
+RUN mkdir /project
+WORKDIR /project
+COPY . /project/
 ```
+
 2. Create the docker-compose.yml
 
 ```yml
@@ -46,7 +47,7 @@ services:
     build: .
     command: python manage.py runserver 0.0.0.0:8000
     volumes: 
-       - .:/to_delete
+       - .:/project
     ports:
       - "8000:8000"
 ```
@@ -63,14 +64,28 @@ services:
 ### Set up the Database
 We're using postgres, not sqlite. Let's get a docker db running locally. 
 
-1. Modify the docker-compose.yml to add:
+1. Modify the docker-compose.yml to add the database:
 ```yml
+version: '3.9'
+
+services: 
+  web:
+    build: .
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes: 
+       - .:/project
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
   db:
     image: postgres:15.3
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=mys3cretpassw0rd!
       - POSTGRES_DB=restaurant
+    ports:
+      - "5433:5432"
     volumes:
       - pgdata:/var/lib/postgresql/data
 
@@ -78,18 +93,18 @@ volumes:
     pgdata:
 ```
 
-2. Update requirements to add `psycopg2`
+2. Install psycopg2 as a new dependency:
    `pip install psycopg2`
    `pip freeze > requirements.txt`
 
-3. Update the settings.py file, add:
+3. Update the server/settings.py file, add:
 ```python
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'restaurant',
         'USER': 'postgres',
-        'PASSWORD': 'mys3cretpassw0rd',
+        'PASSWORD': 'mys3cretpassw0rd!',
         'HOST': 'db',
         'PORT': 5432,
     }
