@@ -127,7 +127,7 @@ DATABASES = {
 }
 ```
 4. Build it!
-`docker-compose up --build`
+`docker compose up --build`
 
 5. You should be able to see the app running at: localhost:8000
 
@@ -135,4 +135,4 @@ DATABASES = {
 ## Creating a Superuser
 
 1. In the project run:
-`docker-compose exec web python manage.py createsuperuser`
+`docker compose exec web python manage.py createsuperuser`
