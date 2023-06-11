@@ -3,12 +3,12 @@ from django.db import models
 # Create your models here.
 from django.db import models
 from django.contrib.postgres.fields import ArrayField
-import uuid
+import cuid
 
 
 # Location model
 class Location(models.Model):
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    id = models.CharField(primary_key=True, default=cuid.cuid, max_length=25, editable=False)
     name = models.CharField(max_length=255)
     logo = models.ImageField(upload_to='logos/')
     address = models.TextField()
@@ -23,7 +23,7 @@ class Location(models.Model):
 
 # Menu model
 class Menu(models.Model):
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    id = models.CharField(primary_key=True, default=cuid.cuid, max_length=25, editable=False)
     name = models.CharField(max_length=255)
     items = models.ManyToManyField('MenuItem', related_name='menus')
     deletedAt = models.DateTimeField(null=True, blank=True)
@@ -33,9 +33,10 @@ class Menu(models.Model):
     class Meta:
         db_table = 'menu'
 
+
 # MenuItem model
 class MenuItem(models.Model):
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    id = models.CharField(primary_key=True, default=cuid.cuid, max_length=25, editable=False)
     section = models.ForeignKey('MenuSection', on_delete=models.CASCADE)
     name = models.CharField(max_length=255)
     description = models.TextField()
@@ -48,17 +49,19 @@ class MenuItem(models.Model):
     class Meta:
         db_table = 'menu_item'
 
+
 # MenuSection model
 class MenuSection(models.Model):
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    id = models.CharField(primary_key=True, default=cuid.cuid, max_length=25, editable=False)
     name = models.CharField(max_length=255)
 
     class Meta:
         db_table = 'menu_section'
 
+
 # Schedule model
 class Schedule(models.Model):
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    id = models.CharField(primary_key=True, default=cuid.cuid, max_length=25, editable=False)
     location = models.ForeignKey(Location, on_delete=models.CASCADE)
     menu = models.ForeignKey(Menu, on_delete=models.CASCADE)
     name = models.CharField(max_length=255)

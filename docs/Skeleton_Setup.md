@@ -60,6 +60,22 @@ services:
 
 2. Create the app:
    `python manage.py startapp src`
+3. Add the app to settings.py
+```python
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'src',
+]
+```
+4. Update ALLOWED_HOSTS in settings.py
+```
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+```
 
 ### Set up the Database
 We're using postgres, not sqlite. Let's get a docker db running locally. 
@@ -112,3 +128,11 @@ DATABASES = {
 ```
 4. Build it!
 `docker-compose up --build`
+
+5. You should be able to see the app running at: localhost:8000
+
+
+## Creating a Superuser
+
+1. In the project run:
+`docker-compose exec web python manage.py createsuperuser`
