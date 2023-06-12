@@ -14,7 +14,7 @@ on:
     branches:
       - main
 
-development:
+env:
   AWS_REGION: us-west-2                   # set this to your preferred AWS region, e.g. us-west-1
   ECR_REPOSITORY: open-restaurant-dev           # set this to your Amazon ECR repository name
   ECS_SERVICE: open-restaurant-service                 # set this to your Amazon ECS service name
@@ -28,7 +28,7 @@ jobs:
   deploy:
     name: Deploy
     runs-on: ubuntu-latest
-    environment: production
+    environment: development
 
     steps:
       - name: Checkout
