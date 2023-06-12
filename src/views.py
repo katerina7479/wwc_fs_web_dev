@@ -4,6 +4,7 @@ from rest_framework import viewsets
 from src.models.serializers import *
 from src.models.models import *
 
+
 # Create your views here.
 def health_check(request):
     return JsonResponse({"status": "ok"})
