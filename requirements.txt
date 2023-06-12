@@ -2,6 +2,7 @@ asgiref==3.7.2
 cuid==0.4
 Django==4.2.2
 django-extensions==3.2.3
+django-filter==23.2
 djangorestframework==3.14.0
 Faker==18.10.1
 Pillow==9.5.0
