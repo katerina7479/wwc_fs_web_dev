@@ -1,0 +1,55 @@
+{
+    "taskDefinitionArn": "arn:aws:ecs:us-west-2:130354956980:task-definition/open-restaurant-task-definition:1",
+    "containerDefinitions": [
+        {
+            "name": "wwc-fs-web-dev",
+            "image": "open-restaurant-dev:latest",
+            "cpu": 0,
+            "portMappings": [
+                {
+                    "name": "wwc-fs-web-dev-8000-tcp",
+                    "containerPort": 8000,
+                    "hostPort": 8000,
+                    "protocol": "tcp",
+                    "appProtocol": "http"
+                }
+            ],
+            "essential": true,
+            "environment": [],
+            "environmentFiles": [],
+            "mountPoints": [],
+            "volumesFrom": [],
+            "ulimits": []
+        }
+    ],
+    "family": "open-restaurant-task-definition",
+    "networkMode": "awsvpc",
+    "revision": 1,
+    "volumes": [],
+    "status": "ACTIVE",
+    "requiresAttributes": [
+        {
+            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.18"
+        },
+        {
+            "name": "ecs.capability.task-eni"
+        }
+    ],
+    "placementConstraints": [],
+    "compatibilities": [
+        "EC2",
+        "FARGATE"
+    ],
+    "requiresCompatibilities": [
+        "EC2"
+    ],
+    "cpu": "1024",
+    "memory": "3072",
+    "runtimePlatform": {
+        "cpuArchitecture": "X86_64",
+        "operatingSystemFamily": "LINUX"
+    },
+    "registeredAt": "2023-06-12T04:47:29.528Z",
+    "registeredBy": "arn:aws:iam::130354956980:root",
+    "tags": []
+}
