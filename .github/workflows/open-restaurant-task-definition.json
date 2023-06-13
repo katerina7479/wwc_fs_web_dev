@@ -1,16 +1,14 @@
 {
+    "executionRoleArn": "arn:aws:iam::130354956980:role/aws-service-role/ecs.amazonaws.com/AWSServiceRoleForECS",
     "containerDefinitions": [
         {
             "name": "wwc-fs-web-dev",
             "image": "open-restaurant-dev:latest",
-            "cpu": 0,
+            "memory": "2048",
             "portMappings": [
                 {
-                    "name": "wwc-fs-web-dev-8000-tcp",
-                    "containerPort": 8000,
-                    "hostPort": 8000,
+                    "containerPort": 80,
                     "protocol": "tcp",
-                    "appProtocol": "http"
                 }
             ],
             "essential": true,
@@ -26,13 +24,8 @@
     "volumes": [],
     "placementConstraints": [],
     "requiresCompatibilities": [
-        "EC2"
+        "FARGATE"
     ],
     "cpu": "1024",
-    "memory": "3072",
-    "runtimePlatform": {
-        "cpuArchitecture": "X86_64",
-        "operatingSystemFamily": "LINUX"
-    },
-    "tags": []
+    "memory": "2048"
 }
