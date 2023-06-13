@@ -4,14 +4,15 @@
         {
             "name": "wwc-fs-web-dev",
             "image": "open-restaurant-dev:latest",
-            "memory": "2048",
+            "cpu": 512,
+            "memory": 500,
             "portMappings": [
                 {
-                    "containerPort": 80,
+                    "containerPort": 8000,
+                    "hostPort": 8000,
                     "protocol": "tcp"
                 }
             ],
-            "essential": true,
             "environment": [],
             "environmentFiles": [
                 {
@@ -25,12 +26,10 @@
         }
     ],
     "family": "open-restaurant-task-definition",
-    "networkMode": "awsvpc",
+    "networkMode": "bridge",
     "volumes": [],
     "placementConstraints": [],
     "requiresCompatibilities": [
-        "FARGATE"
-    ],
-    "cpu": "1024",
-    "memory": "2048"
+        "EC2"
+    ]
 }
