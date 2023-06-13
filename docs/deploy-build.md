@@ -13,4 +13,4 @@
 4. Add secret keys to github
 5. Add appropriate dockerfile for deploying
 6. Add setup run.sh
-7. Add custom nginx
+7. Add custom nginx.conf
