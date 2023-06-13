@@ -1,4 +1,5 @@
 {
+    "executionRoleArn": "arn:aws:iam::130354956980:role/ECS-Tasks",
     "containerDefinitions": [
         {
             "name": "wwc-fs-web-dev",
