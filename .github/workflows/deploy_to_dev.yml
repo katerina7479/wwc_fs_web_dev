@@ -15,14 +15,18 @@ on:
       - main
 
 env:
-  AWS_REGION: us-west-2                   # set this to your preferred AWS region, e.g. us-west-1
+  AWS_REGION: us-west-2                         # set this to your preferred AWS region, e.g. us-west-1
   ECR_REPOSITORY: open-restaurant-dev           # set this to your Amazon ECR repository name
-  ECS_SERVICE: open-restaurant-dev-service                 # set this to your Amazon ECS service name
-  ECS_CLUSTER: open-restaurant-dev-cluster                 # set this to your Amazon ECS cluster name
-  ECS_TASK_DEFINITION: .github/workflows/open-restaurant-task-definition.json # set this to the path to your Amazon ECS task definition
+  ECS_SERVICE: or-dev-service                   # set this to your Amazon ECS service name
+  ECS_CLUSTER: open-restaurant-dev-cluster      # set this to your Amazon ECS cluster name
+  ECS_TASK_DEFINITION: .github/workflows/open-restaurant-task-definition.json   # set this to the path to your Amazon ECS task definition
                                                # file, e.g. .aws/task-definition.json
-  CONTAINER_NAME: wwc-fs-web-dev           # set this to the name of the container in the
+  CONTAINER_NAME: wwc-fs-web-dev               # set this to the name of the container in the
                                                # containerDefinitions section of your task definition
+
+defaults:
+  run:
+    shell: bash
 
 jobs:
   deploy:
@@ -54,7 +58,7 @@ jobs:
           # Build a docker container and
           # push it to ECR so that it can
           # be deployed to ECS.
-          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+          docker build -f Dockerfile.dev -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
           echo "image=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG" >> $GITHUB_OUTPUT
 
