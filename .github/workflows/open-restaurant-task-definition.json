@@ -1,5 +1,4 @@
 {
-    "executionRoleArn": "arn:aws:iam::130354956980:role/aws-service-role/ecs.amazonaws.com/AWSServiceRoleForECS",
     "containerDefinitions": [
         {
             "name": "wwc-fs-web-dev",

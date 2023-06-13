@@ -20,13 +20,19 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
+ENV = os.environ['environment']
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-7bh9ydf&0v3qb2t_69iv!rxn*t$*@*n!w1#5zdmi!zke2p%=o_'
+if ENV != 'local':
+    SECRET_KEY = os.environ['SECRET_KEY']
+    ALLOWED_HOSTS = os.environ['ALLOWED_HOSTS']
+else:
+    SECRET_KEY = 'django-insecure-7bh9ydf&0v3qb2t_69iv!rxn*t$*@*n!w1#5zdmi!zke2p%=o_'
+    ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+
 
 
 # Application definition
