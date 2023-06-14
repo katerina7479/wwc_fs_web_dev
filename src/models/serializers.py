@@ -15,6 +15,7 @@ class MenuSerializer(serializers.ModelSerializer):
         fields = '__all__'
         depth = 2
 
+
 class MenuItem(serializers.ModelSerializer):
     class Meta:
         model = MenuItem

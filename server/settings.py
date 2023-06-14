@@ -82,10 +82,10 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'restaurant',
-        'USER': os.environ.get('DB_USER', 'postgres'),
-        'PASSWORD': os.environ.get('DB_PASSWORD', 'mys3cretpassw0rd!'),
-        'HOST': os.environ.get('DB_HOST', 'db'),
-        'PORT': os.environ.get('DB_PORT', 5432),
+        'USER': 'postgres',
+        'PASSWORD': 'mys3cretpassw0rd!',
+        'HOST': 'db',
+        'PORT': 5432,
     }
 }
 
