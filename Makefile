@@ -23,3 +23,6 @@ shell:
 
 seed-data:
 	docker compose exec web python manage.py runscript make_seed_data
+
+client:
+	cd client && npm run start
