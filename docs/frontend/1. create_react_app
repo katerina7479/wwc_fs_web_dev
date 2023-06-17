@@ -1,0 +1,17 @@
+
+* Setting up a React Frontend
+
+** Goals:
+Create a react app in a client directory
+Run client locally on localhost:3000 (it will hit the api at 8000)
+
+
+** Developing
+1. Run `npx create-react-app client` from the root of the directory: [https://create-react-app.dev/docs/getting-started/]
+2. `cd client && npm run start`
+
+Modify client/src code!
+
+** Production:
+
+Build the React app, and deploy the build to a static file hosting service (S3)

@@ -8,10 +8,12 @@ django-filter==23.2
 django-storages==1.13.2
 djangorestframework==3.14.0
 Faker==18.10.1
+install==1.3.5
 jmespath==1.0.1
 Pillow==9.5.0
 psycopg2==2.9.6
 python-dateutil==2.8.2
+python-dotenv==1.0.0
 pytz==2023.3
 s3transfer==0.6.1
 six==1.16.0
