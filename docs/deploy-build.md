@@ -1,7 +1,7 @@
 1. Create AWS account
-   2. Configure AWS Account
+   2. Configuring
       3. Set  budget
-      3. Access key & Secret key
+   3. IAM Access key & Secret key
       4. User Permissions
          * AmazonEC2ContainerRegistryFullAccess
          * AmazonECS_FullAccess
@@ -9,8 +9,9 @@
       4. Set up S3 buckets
          * static
          * media
-         * credentials?
-   * 
+   * Set up RDS database remotely
+     * Get credentials
+     * Add to .env.dev file
 
 4. Create Github workflow files in .github
    3. Workflow is the deploy_to_dev.yml
