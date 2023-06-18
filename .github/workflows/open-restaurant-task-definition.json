@@ -1,11 +1,11 @@
 {
-    "executionRoleArn": "arn:aws:iam::130354956980:role/ECS-Tasks",
+    "executionRoleArn": "arn:aws:iam::130354956980:role/ECSTaskExecutionRole",
     "containerDefinitions": [
         {
             "name": "wwc-fs-web-dev",
             "image": "open-restaurant-dev:latest",
             "cpu": 512,
-            "memory": 500,
+            "memory": 512,
             "portMappings": [
                 {
                     "containerPort": 8000,
@@ -21,8 +21,7 @@
                 }
             ],
             "mountPoints": [],
-            "volumesFrom": [],
-            "ulimits": []
+            "volumesFrom": []
         }
     ],
     "family": "open-restaurant-task-definition",

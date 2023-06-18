@@ -12,8 +12,11 @@
    * Set up RDS database remotely
      * Get credentials
      * Add to .env.dev file
+   * Set up EC2
+     * 
 
-4. Create Github workflow files in .github
+
+6. Create Github workflow files in .github
    3. Workflow is the deploy_to_dev.yml
    4. Add task-definition to workflow
 4. Add secret keys to github
