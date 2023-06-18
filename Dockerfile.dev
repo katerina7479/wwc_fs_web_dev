@@ -4,14 +4,27 @@ ENV PTYHONBUFFERED 1
 
 RUN apt update && apt install nginx -y
 
-COPY ./nginx/default.conf /etc/nginx/conf.d/default.conf
+# Set working directory
+WORKDIR /project
 
-COPY . .
+# Add requirements.txt before rest of repo for caching
+COPY requirements.txt .
 
+# Install any needed packages specified in requirements.txt
 RUN pip install -r requirements.txt
 
-WORKDIR /project
-COPY ./nginx/run.sh .
+# Copy the current directory contents into the container at /project
+COPY . .
 
+# Copy Nginx configuration file
+COPY ./nginx/default.conf /etc/nginx/conf.d/default.conf
+
+# Copy and set permissions for the script to run Django and Nginix
+COPY ./nginx/run.sh .
 RUN chmod +x run.sh
+
+# Make port 80 available to the world outside this container
+EXPOSE 80
+
+# Run the command to start uWSGI and Nginx when the container launches
 CMD ["./run.sh"]
