@@ -16,7 +16,7 @@
             "logConfiguration": {
                 "logDriver": "awslogs",
                 "options": {
-                    "awslogs-group": "/ecs/open-restaurant",
+                    "awslogs-group": "ecs/wwc-fs-web-dev",
                     "awslogs-region": "us-west-2",
                     "awslogs-stream-prefix": "ecs"
                 }
