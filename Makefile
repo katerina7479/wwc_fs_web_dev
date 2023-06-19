@@ -21,6 +21,9 @@ create-superuser:
 shell:
 	docker compose exec web python manage.py shell
 
+collectstatic:
+	docker compose exec web python manage.py collectstatic
+
 seed-data:
 	docker compose exec web python manage.py runscript make_seed_data
 

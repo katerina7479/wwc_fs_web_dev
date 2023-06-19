@@ -30,8 +30,7 @@ SECRET_KEY = str(os.getenv('SECRET_KEY'))
 ALLOWED_HOSTS = ['*']
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv('DEBUG')
-
+DEBUG = os.getenv('DEBUG') == 'True'
 
 # Application definition
 
@@ -152,6 +151,10 @@ if not DEBUG:  # i.e., if in production
     }
 
     MEDIA_URL = f'https://{AWS_MEDIA_BUCKET_NAME}.s3.amazonaws.com/'
+    S3_URL = f'//{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com/'
+    MEDIA_ROOT = MEDIA_URL
+    STATIC_URL = S3_URL
+
 else:
     # Local development settings for static files
     STATIC_URL = '/static/'
