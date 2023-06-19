@@ -13,3 +13,6 @@ docs/
 client/
 static/
 media/
+Dockerfile
+Makefile
+docker-compose.yml
