@@ -17,6 +17,7 @@ Including another URLconf
 from django.urls import path, include, re_path
 from django.conf import settings
 from django.conf.urls.static import static
+from django.views.generic import TemplateView
 from rest_framework.routers import DefaultRouter
 import src.views as views
 from src.swagger.views import custom_get_swagger_view
@@ -35,7 +36,8 @@ schema_view = custom_get_swagger_view(title='Open Restaurant API')
 urlpatterns = [
     path('health/', views.health_check, name='health_check'),
     path('api/', include(router.urls)),
-    re_path(r'^swagger/$', schema_view)
+    path('', TemplateView.as_view(template_name='index.html'), name='index'),
+    re_path(r'^swagger/$', schema_view, name='swagger')
 ]
 
 if settings.DEBUG:
