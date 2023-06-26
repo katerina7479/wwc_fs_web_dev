@@ -16,9 +16,12 @@ Including another URLconf
 """
 from django.urls import path, include
 from django.conf import settings
+from django.conf.urls import url
 from django.conf.urls.static import static
 from rest_framework.routers import DefaultRouter
 import src.views as views
+from rest_framework_swagger.views import get_swagger_view
+
 
 
 router = DefaultRouter()
@@ -28,9 +31,12 @@ router.register(r'item', views.MenuItemViewSet)
 router.register(r'schedule', views.ScheduleViewSet)
 
 
+schema_view = get_swagger_view(title='Open Restaurant API')
+
 urlpatterns = [
     path('health/', views.health_check, name='health_check'),
-    path('api/', include(router.urls))
+    path('api/', include(router.urls)),
+    url(r'^$', schema_view)
 ]
 
 if settings.DEBUG:
