@@ -19,4 +19,6 @@
    9. `sudo service ecs start`
 9. Run `sudo systemctl enable ecs` to make it start automatically
 
+1. Create a custom AMI to use this for your future ECS autoscaled instances
+2. Create the Autoscaling group template from this
 
