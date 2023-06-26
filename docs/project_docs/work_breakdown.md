@@ -77,3 +77,5 @@ Session 5: Extending Functionality
 * Likely to run out of steam / have other obligations
   * Be brutal about minimizing V0 Scope
   * Have fun!
+
+![Screenshot 2023-06-25 at 7.04.32 PM.png](..%2F..%2F..%2F..%2FDesktop%2FScreenshot%202023-06-25%20at%207.04.32%20PM.png)
