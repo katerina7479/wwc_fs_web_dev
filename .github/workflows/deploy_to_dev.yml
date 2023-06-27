@@ -17,6 +17,7 @@ on:
 env:
   AWS_REGION: us-west-2                         # set this to your preferred AWS region, e.g. us-west-1
   ECR_REPOSITORY: or-web-dev           # set this to your Amazon ECR repository name
+  $ECR_REGISTRY: 130354956980.dkr.ecr.us-west-2.amazonaws.com # set this to your Amazon ECR registry
   ECS_SERVICE: or-dev-service                   # set this to your Amazon ECS service name
   ECS_CLUSTER: or-development      # set this to your Amazon ECS cluster name
   ECS_TASK_DEFINITION: .github/workflows/open-restaurant-task-definition.json   # set this to the path to your Amazon ECS task definition
@@ -76,4 +77,4 @@ jobs:
           task-definition: ${{ steps.task-def.outputs.task-definition }}
           service: ${{ env.ECS_SERVICE }}
           cluster: ${{ env.ECS_CLUSTER }}
-          wait-for-service-stability: false
+          wait-for-service-stability: true
