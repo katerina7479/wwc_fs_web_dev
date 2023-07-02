@@ -100,4 +100,15 @@ class LoginTests(APITestCase):
 
         # Verify that the response has a 200 status code
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        print(response.json())
+        content = response.json()
+        # Verify that a token is returned
+        self.assertIn("access", content)
+        self.assertIn("refresh", content)
+
+        url = "/auth/token/refresh/"
+        data = {"refresh": content["refresh"]}
+        response = self.client.post(url, data, format="json")
+
+        content = response.json()
+        self.assertIn("access", content)
+        self.assertNotIn("refresh", content)
