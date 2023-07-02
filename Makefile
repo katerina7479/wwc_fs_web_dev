@@ -32,3 +32,6 @@ client:
 
 test:
 	docker compose exec web python manage.py test src.tests
+
+lint:
+	black .
