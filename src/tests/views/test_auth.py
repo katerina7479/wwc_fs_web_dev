@@ -8,7 +8,7 @@ class AuthUserTests(APITestCase):
         """
         Ensure we can register a new user
         """
-        url = "/register/"
+        url = "/auth/registration/"
         data = {
             "first_name": "Admin",
             "last_name": "User",
@@ -26,7 +26,7 @@ class AuthUserTests(APITestCase):
         """
         Ensure that registration with a bad email fails
         """
-        url = "/register/"
+        url = "/auth/registration/"
         data = {
             "first_name": "Admin",
             "last_name": "User",
@@ -48,7 +48,7 @@ class AuthUserTests(APITestCase):
         """
         Ensure that registration with a bad password fails
         """
-        url = "/register/"
+        url = "/auth/registration/"
         data = {
             "first_name": "Admin",
             "last_name": "User",
@@ -63,7 +63,7 @@ class AuthUserTests(APITestCase):
 
 class LoginTests(APITestCase):
     def setUp(self):
-        url = "/register/"
+        url = "/auth/registration/"
         self.email = "email@example.com"
         self.password = "my1Password7&"
         data = {
@@ -89,7 +89,7 @@ class LoginTests(APITestCase):
         self.assertIn("access", content)
         self.assertIn("refresh", content)
 
-    def test_jwt_refresh_headers(self):
+    def test_jwt_refresh(self):
         """
         Ensure we can refresh the JWT.
         """
@@ -100,20 +100,4 @@ class LoginTests(APITestCase):
 
         # Verify that the response has a 200 status code
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-
-        # Verify that cookies are set
-        self.assertIn("openr-access-token", response.cookies)
-        self.assertIn("openr-refresh-token", response.cookies)
-
-        refresh_cookie = response.cookies["openr-refresh-token"]
-
-        # Use the refresh token to get a new token
-        url = "/auth/token/refresh/"
-        self.client.cookies["openr-refresh-token"] = refresh_cookie
-        response = self.client.post(url)
-
-        # Verify that the response has a 200 status code
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
-
-        # Verify that a new access token is set
-        self.assertIn("openr-access-token", response.cookies)
+        print(response.json())

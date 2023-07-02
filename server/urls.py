@@ -40,9 +40,10 @@ urlpatterns = [
     path("", TemplateView.as_view(template_name="index.html"), name="index"),
     path("health/", views.health_check, name="health_check"),
     re_path(r"^swagger/$", schema_view, name="swagger"),
-    path("register/", views.RegisterAPIView.as_view()),
+
     # get authentication
     path("auth/", include("dj_rest_auth.urls")),
+    path("auth/registration/", views.RegisterAPIView.as_view()),
     path("api/", include(router.urls)),
 ]
 
