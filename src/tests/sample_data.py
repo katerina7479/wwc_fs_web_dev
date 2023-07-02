@@ -9,7 +9,7 @@ sample_menu_items = {
         "Shrimp Cocktail",
         "Nachos",
         "Crispy Calamari",
-        "Spinach Artichoke Dip"
+        "Spinach Artichoke Dip",
     ],
     "Breakfast": [
         "Buttermilk Pancakes",
@@ -21,7 +21,7 @@ sample_menu_items = {
         "Bagel with Cream Cheese",
         "Granola with Yogurt",
         "Smoothie Bowl",
-        "Avocado Toast"
+        "Avocado Toast",
     ],
     "Soup": [
         "Tomato Soup",
@@ -33,7 +33,7 @@ sample_menu_items = {
         "Butternut Squash Soup",
         "Vegetable Soup",
         "Miso Soup",
-        "Gazpacho"
+        "Gazpacho",
     ],
     "Salads": [
         "Caesar Salad",
@@ -45,7 +45,7 @@ sample_menu_items = {
         "Waldorf Salad",
         "Nicoise Salad",
         "Mixed Greens Salad",
-        "Quinoa Salad"
+        "Quinoa Salad",
     ],
     "Seafood": [
         "Grilled Salmon",
@@ -57,7 +57,7 @@ sample_menu_items = {
         "Crab Cakes",
         "Seared Scallops",
         "Fish Tacos",
-        "Cioppino"
+        "Cioppino",
     ],
     "Lunch": [
         "BLT Sandwich",
@@ -69,7 +69,7 @@ sample_menu_items = {
         "Reuben Sandwich",
         "Pulled Pork Sandwich",
         "Chicken Pesto Panini",
-        "Quiche"
+        "Quiche",
     ],
     "House Specialties": [
         "Beef Wellington",
@@ -81,7 +81,7 @@ sample_menu_items = {
         "Veal Marsala",
         "Duck Confit",
         "Pork Tenderloin",
-        "Chicken Piccata"
+        "Chicken Piccata",
     ],
     "Dinner": [
         "Spaghetti Bolognese",
@@ -93,7 +93,7 @@ sample_menu_items = {
         "Mushroom Risotto",
         "Fish en Papillote",
         "Shrimp and Grits",
-        "Tofu Pad Thai"
+        "Tofu Pad Thai",
     ],
     "Side Order": [
         "French Fries",
@@ -105,7 +105,7 @@ sample_menu_items = {
         "Garlic Knots",
         "Rice Pilaf",
         "Baked Sweet Potato",
-        "Macaroni and Cheese"
+        "Macaroni and Cheese",
     ],
     "Dessert": [
         "Chocolate Cake",
@@ -117,7 +117,7 @@ sample_menu_items = {
         "Bread Pudding",
         "Chocolate Chip Cookies",
         "Brownies",
-        "Ice Cream Sundae"
+        "Ice Cream Sundae",
     ],
     "Drinks": [
         "Coca-Cola",
@@ -129,8 +129,8 @@ sample_menu_items = {
         "Espresso",
         "Cappuccino",
         "Hot Chocolate",
-        "Milkshake"
-    ]
+        "Milkshake",
+    ],
 }
 
 sample_menus = [
@@ -143,5 +143,5 @@ sample_menus = [
     "Summer",
     "Winter",
     "Christmas Day",
-    "Valentine's Day"
+    "Valentine's Day",
 ]

@@ -1,15 +1,9 @@
-from django.http import JsonResponse
-
 from rest_framework import viewsets
 from src.models.serializers import *
 from src.models.models import *
 
 
 # Create your views here.
-def health_check(request):
-    return JsonResponse({"status": "ok"})
-
-
 class LocationViewSet(viewsets.ModelViewSet):
     serializer_class = LocationSerializer
     queryset = Location.objects.all()
