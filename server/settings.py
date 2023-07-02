@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "django_extensions",
     "django_filters",
+    "corsheaders",
     "rest_framework",
     "rest_framework_simplejwt",
     "dj_rest_auth",
@@ -53,6 +54,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
+    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
@@ -79,6 +81,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = "server.wsgi.application"
+CORS_ORIGIN_ALLOW_ALL = True
 
 
 # Database
@@ -130,9 +133,8 @@ REST_FRAMEWORK = {
 
 REST_AUTH = {
     "USE_JWT": True,
-    "JWT_AUTH_COOKIE": "openr-access-token",
-    "JWT_AUTH_REFRESH_COOKIE": "openr-refresh-token",
     "TOKEN_MODEL": None,
+    "JWT_AUTH_HTTPONLY": False,
 }
 
 # Internationalization
