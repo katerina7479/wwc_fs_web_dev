@@ -131,10 +131,9 @@ REST_FRAMEWORK = {
 
 REST_AUTH = {
     'USE_JWT': True,
-    'JWT_AUTH_COOKIE': 'openr-auth',
+    'JWT_AUTH_COOKIE': 'openr-access-token',
     'JWT_AUTH_REFRESH_COOKIE': 'openr-refresh-token',
     'TOKEN_MODEL': None,
-    'JWT_AUTH_HTTPONLY': False
 }
 
 # Internationalization
