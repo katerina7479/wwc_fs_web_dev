@@ -25,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = str(os.getenv('SECRET_KEY'))
-
+SITE_ID = 1
 # Not handling this at this layer
 ALLOWED_HOSTS = ['*']
 
@@ -43,6 +43,8 @@ INSTALLED_APPS = [
     'django_extensions',
     'django_filters',
     'rest_framework',
+    'rest_framework_simplejwt',
+    'dj_rest_auth',
     'rest_framework_swagger',
     'storages',
     'src',
@@ -96,6 +98,8 @@ DATABASES = {
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
 
+AUTH_USER_MODEL = 'src.AdminUser'
+
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -118,9 +122,20 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
     ],
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+
+    ],
     'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',
 }
 
+REST_AUTH = {
+    'USE_JWT': True,
+    'JWT_AUTH_COOKIE': 'openr-auth',
+    'JWT_AUTH_REFRESH_COOKIE': 'openr-refresh-token',
+    'TOKEN_MODEL': None,
+    'JWT_AUTH_HTTPONLY': False
+}
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/

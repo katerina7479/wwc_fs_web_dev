@@ -1,11 +1,23 @@
 import cuid
 from django.db import models
+from django.contrib.auth.models import AbstractUser
 from django.contrib.postgres.fields import ArrayField
 
 from src.models.validators import validate_days_of_week, day_abbreviations
 
 
+
 # Create your models here.
+class AdminUser(AbstractUser):
+    first_name = models.CharField(max_length=255)
+    last_name = models.CharField(max_length=255)
+    email = models.EmailField(max_length=255, unique=True)
+    username = None
+
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = []
+
+
 # Location model
 class Location(models.Model):
     id = models.CharField(primary_key=True, default=cuid.cuid, max_length=25, editable=False)

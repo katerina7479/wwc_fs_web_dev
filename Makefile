@@ -29,3 +29,6 @@ seed-data:
 
 client:
 	cd client && npm run start
+
+test:
+	docker compose exec web python manage.py test src.tests
