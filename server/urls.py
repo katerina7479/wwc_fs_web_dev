@@ -26,28 +26,26 @@ import src.views as views
 
 # Model Views
 router = DefaultRouter()
-router.register(r'location', views.LocationViewSet)
-router.register(r'menu', views.MenuViewSet)
-router.register(r'item', views.MenuItemViewSet)
-router.register(r'schedule', views.ScheduleViewSet)
+router.register(r"location", views.LocationViewSet)
+router.register(r"menu", views.MenuViewSet)
+router.register(r"item", views.MenuItemViewSet)
+router.register(r"schedule", views.ScheduleViewSet)
 
 # Swagger Documentation View
-schema_view = custom_get_swagger_view(title='Open Restaurant API')
+schema_view = custom_get_swagger_view(title="Open Restaurant API")
 
 
 # URL Patterns
 urlpatterns = [
-    path('', TemplateView.as_view(template_name='index.html'), name='index'),
-    path('health/', views.health_check, name='health_check'),
-    re_path(r'^swagger/$', schema_view, name='swagger'),
-    path('register/', views.RegisterAPIView.as_view()),
+    path("", TemplateView.as_view(template_name="index.html"), name="index"),
+    path("health/", views.health_check, name="health_check"),
+    re_path(r"^swagger/$", schema_view, name="swagger"),
+    path("register/", views.RegisterAPIView.as_view()),
     # get authentication
-    path('auth/', include('dj_rest_auth.urls')),
-    path('api/', include(router.urls)),
+    path("auth/", include("dj_rest_auth.urls")),
+    path("api/", include(router.urls)),
 ]
 
 # In Local, serve static files locally rather than through nginx
 if settings.DEBUG:
-    urlpatterns += static(
-        settings.MEDIA_URL, document_root=settings.MEDIA_ROOT
-    )
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

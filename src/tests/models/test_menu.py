@@ -6,6 +6,7 @@ from src.models import *
 
 fake = Faker()
 
+
 class LocationTestCase(TestCase):
     def setUp(self):
         name = "Pseudo-Diner"
@@ -20,6 +21,3 @@ class LocationTestCase(TestCase):
     def test_location_name(self):
         location = Location.objects.first()
         self.assertEqual(location.name, "Pseudo-Diner")
-
-
-

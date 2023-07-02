@@ -20,6 +20,7 @@ def create_fake_location():
     location.save()
     return location
 
+
 def create_fake_menu():
     name = fake.bs()
     menu = Menu(name=name)
@@ -37,7 +38,9 @@ def create_fake_menu_section(menu):
         item_name = random.choice(sample_menu_items[section_name])
         description = fake.sentence(nb_words=12)
         price = round(random.uniform(1, 50), 2)
-        menu_item = MenuItem(name=item_name, description=description, price=price, section=section)
+        menu_item = MenuItem(
+            name=item_name, description=description, price=price, section=section
+        )
         menu_item.save()
         menu.items.add(menu_item)
         menu.save()
@@ -49,14 +52,24 @@ def create_fake_schedule(location, menu):
     # Generate a random name, days_of_week, date, start_time, end_time, and precedence
     name = fake.bs()
     days_of_week = random.sample(day_abbreviations, k=random.randint(1, 7))
-    date = fake.date_between(start_date='-1y', end_date='today') if random.random() < 0.5 else None
+    date = (
+        fake.date_between(start_date="-1y", end_date="today")
+        if random.random() < 0.5
+        else None
+    )
     start_time = fake.time_object()
     end_time = fake.time_object()
     precedence = random.randint(1, 10)
 
     schedule = Schedule(
-        location=location, menu=menu, name=name, days_of_week=days_of_week,
-        date=date, start_time=start_time, end_time=end_time, precedence=precedence
+        location=location,
+        menu=menu,
+        name=name,
+        days_of_week=days_of_week,
+        date=date,
+        start_time=start_time,
+        end_time=end_time,
+        precedence=precedence,
     )
     try:
         schedule.full_clean()

@@ -6,32 +6,27 @@ from rest_framework.schemas import SchemaGenerator
 from rest_framework.views import APIView
 from .renderers import OpenAPIRenderer, CustomSwaggerUIRenderer
 
+
 def custom_get_swagger_view(title=None, url=None, patterns=None, urlconf=None):
     """
     Returns schema view which renders Swagger/OpenAPI.
     """
+
     class SwaggerSchemaView(APIView):
         _ignore_model_permissions = True
         exclude_from_schema = True
         permission_classes = [AllowAny]
-        renderer_classes = [
-            CoreJSONRenderer,
-            OpenAPIRenderer,
-            CustomSwaggerUIRenderer
-        ]
+        renderer_classes = [CoreJSONRenderer, OpenAPIRenderer, CustomSwaggerUIRenderer]
 
         def get(self, request):
             generator = SchemaGenerator(
-                title=title,
-                url=url,
-                patterns=patterns,
-                urlconf=urlconf
+                title=title, url=url, patterns=patterns, urlconf=urlconf
             )
             schema = generator.get_schema(request=request)
 
             if not schema:
                 raise exceptions.ValidationError(
-                    'The schema generator did not return a schema Document'
+                    "The schema generator did not return a schema Document"
                 )
 
             return Response(schema)

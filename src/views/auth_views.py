@@ -8,10 +8,8 @@ from django.contrib.auth import authenticate
 from rest_framework.authtoken.models import Token
 
 
-
 def health_check(request):
     return JsonResponse({"status": "ok"})
-
 
 
 class RegisterAPIView(APIView):
