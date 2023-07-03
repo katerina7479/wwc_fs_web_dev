@@ -1,7 +1,7 @@
 on:
   push:
-    tags:
-      - '*'
+    branches:
+      - main
 
 env:
   AWS_BUCKET: or-client-dev
