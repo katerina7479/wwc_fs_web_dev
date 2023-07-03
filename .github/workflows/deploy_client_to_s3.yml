@@ -1,0 +1,73 @@
+on:
+  push:
+    tags:
+      - '*'
+
+env:
+  AWS_BUCKET: or-client-dev
+  AWS_BUCKET_DIR: builds
+  ARTIFACT_NAME: or-client-dev
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clone repository
+        uses: actions/checkout@v2
+      - name: Use Node.js 18.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 18.x
+      - name: Install dependencies
+        run: npm install
+      - name: Test
+        run: npm test
+        env:
+          CI: true
+      - name: Generate build
+        run: npm run build
+      - name: Share artifact inside workflow
+        uses: actions/upload-artifact@v1
+        with:
+          name: ${{ env.ARTIFACT_NAME }}-build
+          path: build
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Get artifact
+        uses: actions/download-artifact@v1
+        with:
+          name: ${{ env.ARTIFACT_NAME }}-build
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_DEFAULT_REGION }}
+      - name: Deploy to S3
+        run: aws s3 sync . s3://${{ env.AWS_BUCKET }}/${{ env.AWS_BUCKET_DIR }} --acl public-read
+  release:
+    runs-on: ubuntu-latest
+    needs: deploy
+    steps:
+      - name: Get artifact
+        uses: actionscd ../download-artifact@v1
+        with:
+          name: ${{ env.ARTIFACT_NAME }}-build
+      - name: Zip build
+        uses: thedoctor0/zip-release@master
+        with:
+          filename: ${{ env.ARTIFACT_NAME }}-release-build.zip
+          path: ./${{ env.ARTIFACT_NAME }}-build
+      - name: Upload build zip artifact
+        uses: actions/upload-artifact@v1
+        with:
+          name: ${{ env.ARTIFACT_NAME }}-release-build.zip
+          path: ./${{ env.ARTIFACT_NAME }}-release-build.zip
+      - name: Release
+        uses: ncipollo/release-action@v1
+        with:
+          artifacts: ${{ env.ARTIFACT_NAME }}-release-build.zip
+          body: https://${{ env.AWS_BUCKET }}.s3.amazonaws.com/${{ env.AWS_BUCKET_DIR }}/index.html
+          token: ${{ secrets.GITHUB_TOKEN }}
