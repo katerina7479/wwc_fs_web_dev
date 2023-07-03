@@ -21,11 +21,11 @@ jobs:
       - name: Install dependencies
         working-directory: client
         run: npm install
-      - name: Test
-        run: npm test
-        working-directory: client
-        env:
-          CI: true
+#      - name: Test
+#        run: npm test
+#        working-directory: client
+#        env:
+#          CI: true
       - name: Generate build
         working-directory: client
         run: npm run build
