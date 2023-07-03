@@ -1,0 +1,12 @@
+.container {
+  display: flex;
+  justify-content: center; /* This will center the child items horizontally */
+  align-items: center; /* This will center the child items vertically */
+  /* Replace with the color you prefer */
+  height: 25vh; /* This makes the container fill the viewport vertically */
+}
+.banner {
+  max-width: 100%;
+  max-height: 25vh;
+  align-content: center;
+}

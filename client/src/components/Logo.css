@@ -1,0 +1,17 @@
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-height: 8em;
+  margin-bottom: 20px;
+}
+
+.logo {
+  height: 100px;
+}
+
+.typography {
+  font-family: 'Kaushan Script', cursive;
+  color: #d58512;
+  font-size: 3em;
+}

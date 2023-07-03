@@ -1,9 +1,12 @@
 import React, { useState } from 'react'
 import { Controller, useForm } from 'react-hook-form'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 import axios from 'axios'
-import { Input, Button, message } from 'antd'
+import { message, Col, Row } from 'antd'
+import { Input, Button } from '../components'
+import BannerHeader from '../components/BannerHeader'
+import './RegistrationForm.css'
 
 const Registration = () => {
   const {
@@ -20,65 +23,85 @@ const Registration = () => {
     axios
       .post(`${process.env.REACT_APP_API_BASE_URL}/auth/registration/`, data)
       .then(() => {
-        setLoading(false)
         message.success('Registration successful. Please login.')
         navigate('/login')
       })
       .catch((error) => {
-        setLoading(false)
         message.error(`Registration failed. Please try again: ${error}`)
+      })
+      .finally(() => {
+        setLoading(false)
       })
   }
 
   console.log(errors)
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <Controller
-        name='first_name'
-        control={control}
-        defaultValue=''
-        rules={{ required: true }}
-        render={({ field }) => <Input placeholder='First Name' {...field} />}
-      />
-      <Controller
-        name='last_name'
-        control={control}
-        defaultValue=''
-        rules={{ required: true }}
-        render={({ field }) => <Input placeholder='Last Name' {...field} />}
-      />
-      <Controller
-        name='email'
-        control={control}
-        defaultValue=''
-        rules={{ required: true }}
-        render={({ field }) => <Input placeholder='Email' {...field} />}
-      />
+    <div className='page'>
+      <BannerHeader />
+      <Row>
+        <Col span={6}></Col>
+        <Col span={12}>
+          <div className='form-container'>
+            <form onSubmit={handleSubmit(onSubmit)}>
+              <Controller
+                name='first_name'
+                control={control}
+                defaultValue=''
+                rules={{ required: true }}
+                render={({ field }) => <Input placeholder='First Name' {...field} />}
+              />
+              <Controller
+                name='last_name'
+                control={control}
+                defaultValue=''
+                rules={{ required: true }}
+                render={({ field }) => <Input placeholder='Last Name' {...field} />}
+              />
+              <Controller
+                name='email'
+                control={control}
+                defaultValue=''
+                rules={{ required: true }}
+                render={({ field }) => <Input placeholder='Email' {...field} />}
+              />
 
-      <Controller
-        name='password'
-        control={control}
-        defaultValue=''
-        rules={{ required: true }}
-        render={({ field }) => <Input.Password placeholder='Password' {...field} />}
-      />
+              <Controller
+                name='password'
+                control={control}
+                defaultValue=''
+                rules={{ required: true }}
+                render={({ field }) => <Input type='password' placeholder='Password' {...field} />}
+              />
 
-      <Controller
-        name='password2'
-        control={control}
-        defaultValue=''
-        rules={{
-          required: true,
-          validate: (value) => value === watch('password')
-        }}
-        render={({ field }) => <Input.Password placeholder='Confirm Password' {...field} />}
-      />
+              <Controller
+                name='password2'
+                control={control}
+                defaultValue=''
+                rules={{
+                  required: true,
+                  validate: (value) => value === watch('password')
+                }}
+                render={({ field }) => <Input type='password' placeholder='Confirm Password' {...field} />}
+              />
 
-      <Button type='primary' htmlType='submit' loading={loading}>
-        Register
-      </Button>
-    </form>
+              <Button type='primary' htmlType='submit' loading={loading}>
+                Register
+              </Button>
+            </form>
+            <Button type={'link'} loading={loading}>
+              <Link to='/login'>Log In</Link>
+            </Button>
+          </div>
+        </Col>
+        <Col span={6}></Col>
+      </Row>
+      <Row>
+        <Col span={24}>
+          <div className='footer'></div>
+        </Col>
+      </Row>
+    </div>
   )
 }
 
