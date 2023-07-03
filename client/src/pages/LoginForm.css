@@ -1,0 +1,19 @@
+.page {
+  background-color: #0e1e1e;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  min-width: 300px;
+  max-width: 580px;
+  margin: auto;
+  margin-top: 40px;
+  background-color: #cccccc;
+  padding: 40px;
+}
+
+.footer {
+  background-color: #0e1e1e;
+  height: 50vh;
+}
