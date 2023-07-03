@@ -70,11 +70,14 @@ jobs:
         with:
           name: ${{ env.ARTIFACT_NAME }}-build
           path: build-output
+
       - name: Zip build
-        uses: thedoctor0/zip-release@master
+        uses: thedoctor0/zip-release@main
         with:
+          type: 'zip'
           filename: ${{ env.ARTIFACT_NAME }}-release-build.zip
           path: ./build-output/${{ env.ARTIFACT_NAME }}-build
+
       - name: Upload build zip artifact
         uses: actions/upload-artifact@v1
         with:
