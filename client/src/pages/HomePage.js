@@ -1,13 +1,28 @@
 import React, { useContext } from 'react'
 import { AuthContext } from '../auth/AuthContext'
-import NavBar from '../components/NavBar'
+import { HorizontalNavBar } from '../components'
 
 const HomePage = () => {
   const { logOut } = useContext(AuthContext)
 
+  const items = [
+    {
+      label: 'Menus',
+      key: 'menus'
+    },
+    {
+      label: 'Locations',
+      key: 'locations'
+    },
+    {
+      label: 'Calendar',
+      key: 'calendar'
+    }
+  ]
+
   return (
     <div>
-      <NavBar />
+      <HorizontalNavBar items={items} />
       You are logged in
       <button onClick={logOut}>Log Out</button>
     </div>
