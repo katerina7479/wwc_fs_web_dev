@@ -58,7 +58,7 @@ jobs:
           aws-region: ${{ env.AWS_REGION }}
 
       - name: Deploy to S3
-        run: aws s3 sync . s3://${{ env.AWS_BUCKET }}/${{ env.AWS_BUCKET_DIR }} --acl public-read
+        run: aws s3 sync . s3://${{ env.AWS_BUCKET }} --acl public-read
   release:
     runs-on: ubuntu-latest
     needs: deploy
@@ -94,6 +94,6 @@ jobs:
         uses: ncipollo/release-action@v1
         with:
           artifacts: ${{ env.ARTIFACT_NAME }}-release-build.zip
-          body: https://${{ env.AWS_BUCKET }}.s3.amazonaws.com/${{ env.AWS_BUCKET_DIR }}/index.html
+          body: https://${{ env.AWS_BUCKET }}.s3.amazonaws.com/index.html
           token: ${{ secrets.GITHUB_TOKEN }}
           tag: ${{ steps.short-sha.outputs.sha }}
