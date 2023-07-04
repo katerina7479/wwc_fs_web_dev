@@ -5,7 +5,6 @@ on:
 
 env:
   AWS_BUCKET: or-client-dev
-  AWS_BUCKET_DIR: builds/build-output
   AWS_REGION: us-west-2
   ARTIFACT_NAME: or-client-dev
 
@@ -58,6 +57,7 @@ jobs:
           aws-region: ${{ env.AWS_REGION }}
 
       - name: Deploy to S3
+        working-directory: ./build-output
         run: aws s3 sync . s3://${{ env.AWS_BUCKET }} --acl public-read
   release:
     runs-on: ubuntu-latest
