@@ -63,6 +63,8 @@ jobs:
     runs-on: ubuntu-latest
     needs: deploy
     environment: development
+    permissions:
+      contents: write
 
     steps:
       - name: Get artifact
