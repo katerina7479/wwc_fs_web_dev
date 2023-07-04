@@ -5,7 +5,7 @@ on:
 
 env:
   AWS_BUCKET: or-client-dev
-  AWS_BUCKET_DIR: builds
+  AWS_BUCKET_DIR: builds/build-output
   AWS_REGION: us-west-2
   ARTIFACT_NAME: or-client-dev
 
