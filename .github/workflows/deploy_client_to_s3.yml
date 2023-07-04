@@ -89,3 +89,4 @@ jobs:
           artifacts: ${{ env.ARTIFACT_NAME }}-release-build.zip
           body: https://${{ env.AWS_BUCKET }}.s3.amazonaws.com/${{ env.AWS_BUCKET_DIR }}/index.html
           token: ${{ secrets.GITHUB_TOKEN }}
+          tag: ${{ github.sha }}
