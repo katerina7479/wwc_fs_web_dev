@@ -85,10 +85,15 @@ jobs:
         with:
           name: ${{ env.ARTIFACT_NAME }}-release-build.zip
           path: ./build-output
+
+      - name: Get short SHA
+        id: short-sha
+        run: echo "::set-output name=sha::$(echo ${GITHUB_SHA:0:7})"
+
       - name: Release
         uses: ncipollo/release-action@v1
         with:
           artifacts: ${{ env.ARTIFACT_NAME }}-release-build.zip
           body: https://${{ env.AWS_BUCKET }}.s3.amazonaws.com/${{ env.AWS_BUCKET_DIR }}/index.html
           token: ${{ secrets.GITHUB_TOKEN }}
-          tag: ${{ github.sha }}
+          tag: ${{ steps.short-sha.outputs.sha }}
