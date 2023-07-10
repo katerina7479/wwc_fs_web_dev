@@ -1,6 +1,7 @@
 import React, { createContext, useEffect, useState } from 'react'
 import axios from './AxiosConfig'
 import { BASE_API_URL } from '../constants'
+import {Redirect} from "wouter";
 
 export const AuthContext = createContext()
 
@@ -43,11 +44,26 @@ export function AuthProvider({ children }) {
     }
   }
 
-  function logOut() {
-    // Here you would typically make a request to your API to log out the user.
-    // If the request is successful, you would update isAuthenticated to false.
-    setIsAuthenticated(false)
-  }
+  async function logOut() {
+    setLoading(true)
+    try {
+      const response = await axios.post(`${BASE_API_URL}/auth/logout/`, { email, password })
 
+      if (response.status === 200) {
+        localStorage.setItem('access', null)
+        localStorage.setItem('refresh', null)
+        axios.defaults.headers.common['Authorization'] = null
+        setIsAuthenticated(false)
+        setError(null)
+      } else {
+        setError('Logout failed')
+      }
+    } catch (err) {
+      setError(err.message)
+    } finally {
+      setLoading(false)
+    }
+  }
+  console.log("Returning Auth provider")
   return <AuthContext.Provider value={{ isAuthenticated, logIn, logOut, loading, error }}>{children}</AuthContext.Provider>
 }

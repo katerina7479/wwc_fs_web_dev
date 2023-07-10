@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Controller, useForm } from 'react-hook-form'
-import { Link, useNavigate } from 'react-router-dom'
+import { Redirect, Link } from 'wouter'
 
 import axios from 'axios'
 import { message, Col, Row } from 'antd'
@@ -16,7 +16,7 @@ const Registration = () => {
     formState: { errors }
   } = useForm()
   const [loading, setLoading] = useState(false)
-  const navigate = useNavigate()
+  const [nextPage, setNextPage] = useState(null)
 
   const onSubmit = (data) => {
     setLoading(true)
@@ -24,7 +24,7 @@ const Registration = () => {
       .post(`${process.env.REACT_APP_API_BASE_URL}/auth/registration/`, data)
       .then(() => {
         message.success('Registration successful. Please login.')
-        navigate('/login')
+        setNextPage('/login')
       })
       .catch((error) => {
         message.error(`Registration failed. Please try again: ${error}`)
@@ -35,6 +35,10 @@ const Registration = () => {
   }
 
   console.log(errors)
+
+  if(nextPage){
+    return <Redirect to={nextPage} />
+  }
 
   return (
     <div className='page'>

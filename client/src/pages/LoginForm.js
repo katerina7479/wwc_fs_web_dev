@@ -1,13 +1,14 @@
 import React, { useContext, useState } from 'react'
 import { Controller, useForm } from 'react-hook-form'
-import { Link, useNavigate } from 'react-router-dom'
+import { Redirect, Link } from 'wouter'
 import { Col, message, Row } from 'antd'
 import { Input, Button } from '../components'
 import { AuthContext } from '../auth/AuthContext'
 import './LoginForm.css'
 import BannerHeader from '../components/BannerHeader'
 
-const Login = () => {
+const LoginForm = () => {
+  console.log("Rendering Login")
   const {
     control,
     handleSubmit,
@@ -15,13 +16,13 @@ const Login = () => {
   } = useForm()
   const { logIn } = useContext(AuthContext) // Get logIn from context
   const [loading, setLoading] = useState(false)
-  const navigate = useNavigate()
-
+  const [nextPage, setNextPage] = useState(null)
+  console.log("Rendering Login")
   const onSubmit = (data) => {
     setLoading(true)
     logIn(data.email, data.password) // Call logIn method with the email and password
       .then(() => {
-        navigate('/')
+        setNextPage('/')
       })
       .catch(() => {
         message.error('Login failed. Please check your password and try again.')
@@ -32,6 +33,9 @@ const Login = () => {
       })
   }
 
+  if (nextPage){
+    return <Redirect to={nextPage} />
+  }
   return (
     <div className='page'>
       <BannerHeader />
@@ -67,7 +71,7 @@ const Login = () => {
         </Col>
       </Row>
       <Row>
-        <Col span={24}>
+        <Col span={24}> b
           <div className='footer'></div>
         </Col>
       </Row>
@@ -75,4 +79,4 @@ const Login = () => {
   )
 }
 
-export default Login
+export default LoginForm
