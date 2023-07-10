@@ -1,15 +1,16 @@
 import React, { useContext } from 'react'
-import { Navigate } from 'react-router-dom'
 import { AuthContext } from './AuthContext'
 import { Spin } from 'antd'
+import { Route, Redirect } from 'wouter'
 
-const PrivateRoute = ({ children }) => {
+const PrivateRoute = (props) => {
+  console.log("Private Route")
   const { isAuthenticated, loading } = useContext(AuthContext)
   if (loading) {
     return <Spin />
   }
   console.log('isAuthenticated', isAuthenticated)
-  return isAuthenticated ? children : <Navigate to='/login' replace />
+  return isAuthenticated ? <Route {...props} /> : <Redirect to='/login' />
 }
 
 export default PrivateRoute

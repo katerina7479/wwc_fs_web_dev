@@ -1,0 +1,11 @@
+.header {
+  margin: 0;
+}
+
+.horizontal-menu {
+  font-size: 20px;
+}
+
+.horizontal-menu > li {
+  border-right: 1px solid #cccccc;
+}
