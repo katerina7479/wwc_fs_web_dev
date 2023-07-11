@@ -1,7 +1,6 @@
 import React, { createContext, useEffect, useState } from 'react'
 import axios from './AxiosConfig'
 import { BASE_API_URL } from '../constants'
-import { Redirect } from 'wouter'
 
 export const AuthContext = createContext()
 
@@ -47,7 +46,7 @@ export function AuthProvider({ children }) {
   async function logOut() {
     setLoading(true)
     try {
-      const response = await axios.post(`${BASE_API_URL}/auth/logout/`, { email, password })
+      const response = await axios.post(`${BASE_API_URL}/auth/logout/`)
 
       if (response.status === 200) {
         localStorage.setItem('access', null)
