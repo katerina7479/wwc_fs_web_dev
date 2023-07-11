@@ -4,7 +4,7 @@ on:
       - main
 
 env:
-  AWS_BUCKET: or-client-dev
+  AWS_BUCKET: www.open-restaurant-project.com
   AWS_REGION: us-west-2
   ARTIFACT_NAME: or-client-dev
 
