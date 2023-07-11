@@ -29,7 +29,7 @@ jobs:
       - name: Generate build
         working-directory: client
         env:
-          REACT_APP_API_BASE_URL: "https://api.open-restaurant-project.com"
+          REACT_APP_API_BASE_URL: https://api.open-restaurant-project.com
         run: npm run build
       - name: Move build files
         working-directory: client
