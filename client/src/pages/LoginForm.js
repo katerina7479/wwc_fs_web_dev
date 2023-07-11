@@ -74,7 +74,7 @@ const LoginForm = () => {
       <Row>
         <Col span={24}>
           {' '}
-          b<div className='footer'></div>
+          <div className='footer'></div>
         </Col>
       </Row>
     </div>

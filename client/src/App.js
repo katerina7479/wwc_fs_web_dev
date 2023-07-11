@@ -26,7 +26,7 @@ function App() {
         <PrivateRoute path='/location' component={LocationPage} />
         <PrivateRoute path='/location/:locationId' component={LocationPage} />
         <PrivateRoute path='/calendar' component={CalendarPage} />
-        <Route component={ErrorPage} />
+        <Route path='/error' component={ErrorPage} />
       </Switch>
     </AuthProvider>
   )
