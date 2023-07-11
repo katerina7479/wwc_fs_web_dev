@@ -1,10 +1,10 @@
 import React from 'react'
-import BaseLayout from "../components/BaseLayout";
+import BaseLayout from '../components/BaseLayout'
 
 const MenuPage = () => {
   return (
-    <BaseLayout>
-      <h1>Menus</h1>
+    <BaseLayout currentPage={'menu'}>
+      <h1>MenuPage</h1>
     </BaseLayout>
   )
 }
