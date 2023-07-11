@@ -16,6 +16,8 @@ const Registration = () => {
 
   const onSubmit = (data) => {
     setLoading(true)
+    const registration_url = `${BASE_API_URL}/auth/registration/`
+    console.log(BASE_API_URL, registration_url)
     axios
       .post(`${BASE_API_URL}/auth/registration/`, data)
       .then(() => {

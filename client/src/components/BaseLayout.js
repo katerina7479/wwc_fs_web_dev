@@ -3,7 +3,7 @@ import { AuthContext } from '../auth/AuthContext'
 import { Logo } from '../components'
 import { Row, Col, Button, Menu } from 'antd'
 import './BaseLayout.css'
-import { horizontalMenuItems } from '../constants/routing'
+import { horizontalMenuItems } from '../routing'
 import { Redirect } from 'wouter'
 
 const BaseLayout = (props) => {
