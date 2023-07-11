@@ -7,6 +7,7 @@ import { message, Col, Row } from 'antd'
 import { Input, Button } from '../components'
 import BannerHeader from '../components/BannerHeader'
 import './RegistrationForm.css'
+import { BASE_API_URL } from '../constants'
 
 const Registration = () => {
   const { control, handleSubmit, watch } = useForm()
@@ -16,7 +17,7 @@ const Registration = () => {
   const onSubmit = (data) => {
     setLoading(true)
     axios
-      .post(`${process.env.REACT_APP_API_BASE_URL}/auth/registration/`, data)
+      .post(`${BASE_API_URL}/auth/registration/`, data)
       .then(() => {
         message.success('Registration successful. Please login.')
         setNextPage('/login')
