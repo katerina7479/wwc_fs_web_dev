@@ -16,11 +16,10 @@ import './App.css'
 function App() {
   return (
     <AuthProvider>
-      <Route path='/login' component={LoginForm} />
-      <Route path='/register' component={RegistrationForm} />
-      <Route path='/about' component={AboutPage} />
-
       <Switch>
+        <Route path='/login' component={LoginForm} />
+        <Route path='/register' component={RegistrationForm} />
+        <Route path='/about' component={AboutPage} />
         <PrivateRoute path='/' component={MenuPage} />
         <PrivateRoute path='/menu/' component={MenuPage} />
         <PrivateRoute path='/menu/:menuId' component={MenuPage} />
