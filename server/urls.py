@@ -28,6 +28,7 @@ import src.views as views
 router = DefaultRouter()
 router.register(r"location", views.LocationViewSet)
 router.register(r"menu", views.MenuViewSet)
+router.register(r"section", views.MenuSectionViewSet)
 router.register(r"item", views.MenuItemViewSet)
 router.register(r"schedule", views.ScheduleViewSet)
 
