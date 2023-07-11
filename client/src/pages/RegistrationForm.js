@@ -9,12 +9,7 @@ import BannerHeader from '../components/BannerHeader'
 import './RegistrationForm.css'
 
 const Registration = () => {
-  const {
-    control,
-    handleSubmit,
-    watch,
-    formState: { errors }
-  } = useForm()
+  const { control, handleSubmit, watch } = useForm()
   const [loading, setLoading] = useState(false)
   const [nextPage, setNextPage] = useState(null)
 
@@ -34,9 +29,7 @@ const Registration = () => {
       })
   }
 
-  console.log(errors)
-
-  if(nextPage){
+  if (nextPage) {
     return <Redirect to={nextPage} />
   }
 

@@ -1,9 +1,9 @@
 import React from 'react'
-import BaseLayout from "../components/BaseLayout";
+import BaseLayout from '../components/BaseLayout'
 
 const LocationPage = () => {
   return (
-    <BaseLayout>
+    <BaseLayout currentPage={'location'}>
       <h1>Location</h1>
     </BaseLayout>
   )

@@ -4,12 +4,11 @@ import { Spin } from 'antd'
 import { Route, Redirect } from 'wouter'
 
 const PrivateRoute = (props) => {
-  console.log("Private Route")
   const { isAuthenticated, loading } = useContext(AuthContext)
   if (loading) {
     return <Spin />
   }
-  console.log('isAuthenticated', isAuthenticated)
+  console.log(`This is a private route, you ${isAuthenticated ? 'are' : 'are not'} authenticated`)
   return isAuthenticated ? <Route {...props} /> : <Redirect to='/login' />
 }
 

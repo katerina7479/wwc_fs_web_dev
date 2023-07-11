@@ -1,15 +1,12 @@
 import React from 'react'
-import BaseLayout from "../components/BaseLayout";
+import BaseLayout from '../components/BaseLayout'
 
 const CalendarPage = () => {
   return (
-    <BaseLayout>
+    <BaseLayout currentPage={'calendar'}>
       <h1>CalendarPage</h1>
     </BaseLayout>
   )
 }
 
-
-
-
-export default CalendarPage;
+export default CalendarPage

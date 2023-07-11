@@ -1,7 +1,7 @@
 import React, { createContext, useEffect, useState } from 'react'
 import axios from './AxiosConfig'
 import { BASE_API_URL } from '../constants'
-import {Redirect} from "wouter";
+import { Redirect } from 'wouter'
 
 export const AuthContext = createContext()
 
@@ -64,6 +64,5 @@ export function AuthProvider({ children }) {
       setLoading(false)
     }
   }
-  console.log("Returning Auth provider")
   return <AuthContext.Provider value={{ isAuthenticated, logIn, logOut, loading, error }}>{children}</AuthContext.Provider>
 }

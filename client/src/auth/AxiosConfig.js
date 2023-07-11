@@ -8,11 +8,11 @@ axios.interceptors.response.use(
   },
   function (error) {
     const originalRequest = error.config
-    console.log('Attempting to refresh tokens')
-    // If the server response was a 401, Access Token is expired and we need to refresh
+    // If the server response was a 401, Access Token is expired, and we need to refresh
+
     if (error.response.status === 401 && !originalRequest._retry) {
       originalRequest._retry = true
-
+      console.log('Attempting to refresh tokens')
       // Attempt to refresh the token
       return axios
         .post(`${BASE_API_URL}/auth/refresh/`, {

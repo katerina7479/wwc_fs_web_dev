@@ -4,11 +4,12 @@ import { Redirect, Link } from 'wouter'
 import { Col, message, Row } from 'antd'
 import { Input, Button } from '../components'
 import { AuthContext } from '../auth/AuthContext'
-import './LoginForm.css'
+
 import BannerHeader from '../components/BannerHeader'
 
+import './LoginForm.css'
+
 const LoginForm = () => {
-  console.log("Rendering Login")
   const {
     control,
     handleSubmit,
@@ -17,7 +18,7 @@ const LoginForm = () => {
   const { logIn } = useContext(AuthContext) // Get logIn from context
   const [loading, setLoading] = useState(false)
   const [nextPage, setNextPage] = useState(null)
-  console.log("Rendering Login")
+
   const onSubmit = (data) => {
     setLoading(true)
     logIn(data.email, data.password) // Call logIn method with the email and password
@@ -25,7 +26,7 @@ const LoginForm = () => {
         setNextPage('/')
       })
       .catch(() => {
-        message.error('Login failed. Please check your password and try again.')
+        message.error('Login failed. Please check your password and try again.', errors)
         console.log(errors)
       })
       .finally(() => {
@@ -33,7 +34,7 @@ const LoginForm = () => {
       })
   }
 
-  if (nextPage){
+  if (nextPage) {
     return <Redirect to={nextPage} />
   }
   return (
@@ -71,8 +72,9 @@ const LoginForm = () => {
         </Col>
       </Row>
       <Row>
-        <Col span={24}> b
-          <div className='footer'></div>
+        <Col span={24}>
+          {' '}
+          b<div className='footer'></div>
         </Col>
       </Row>
     </div>

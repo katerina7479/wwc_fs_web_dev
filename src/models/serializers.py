@@ -40,6 +40,11 @@ class MenuItem(serializers.ModelSerializer):
         fields = "__all__"
         depth = 2
 
+class MenuSectionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = MenuSection
+        fields = "__all__"
+        depth = 1
 
 class ScheduleSerializer(serializers.ModelSerializer):
     class Meta:
