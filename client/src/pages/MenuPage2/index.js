@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Layout, Menu } from 'antd'
+import { Layout, Menu as NavMenu } from 'antd'
 const { Content, Sider } = Layout
 import BaseLayout from '../../components/BaseLayout'
 import { useLocation } from 'wouter'
@@ -23,19 +23,19 @@ const exampleMenuList = [
 const Index = ({ params }) => {
   const { menuId } = params
   const [selectedMenu, setSelectedMenu] = useState(menuId || '')
-  const [_location, setLocation] = useLocation()
+  const [, navigate] = useLocation()
   const items = [{ label: 'New Menu', key: 'newMenu' }, ...exampleMenuList]
 
   const handleMenuSelect = (e) => {
     setSelectedMenu(e.key)
-    setLocation(`/menu/${e.key}`)
+    navigate(`/menu/${e.key}`)
   }
 
   return (
     <BaseLayout currentPage={'menu'}>
       <Layout>
         <Sider>
-          <Menu selectedKeys={[selectedMenu]} items={items} onClick={handleMenuSelect} />
+          <NavMenu selectedKeys={[selectedMenu]} items={items} onClick={handleMenuSelect} />
         </Sider>
         <Content>
           <MenuPageForm menuId={selectedMenu} />

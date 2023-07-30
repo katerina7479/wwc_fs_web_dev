@@ -1,71 +1,55 @@
-import React, { useState } from 'react'
-import { message, Typography, Button } from 'antd'
-import { Controller, useForm } from 'react-hook-form'
-import MenuPageSection from './MenuPageSection'
+// MenuPageForm.jsx
+import React, {useEffect, useState} from 'react'
+import MenuSection from './MenuSection'
 import useAxios from 'axios-hooks'
 import { BASE_API_URL } from '../../constants'
+import axios from "axios";
 
-const defaultMenu = {
-  name: 'New Menu',
-  sections: [
-    {
-      id: 'cljrzijen000044qff8eyes6d',
-      name: 'Beverages',
-      items: [
-        {
-          id: 'cljrzijg0000544qf1ro55srw',
-          name: 'Diet Coke',
-          description: 'Probably not good for you',
-          price: 4.24,
-          picture: 'fakeurl'
-        }
-      ]
+const MenuPageForm = (menuId) => {
+  const [currentMenuSections, setCurrentMenuSections] = useState([])
+
+  const [allSections, setAllSections] = useState([])
+  const [items, setItems] = useState([])
+
+  useEffect(() => {
+    Promise.all([
+      axios.get('/api/sections'),
+      axios.get('/api/items')
+    ])
+    .then(([{ data: sectionsData }, { data: itemsData }]) => {
+      setSections(sectionsData)
+      setItems(itemsData)
+    })
+    .catch((error) => {
+      // Handle error here
+      console.error(error)
+    })
+  }, [])
+
+  if (loading) return <p>Loading...</p>
+  if (error) return <p>Error!</p>
+
+  // Now data should hold your fetched sections
+  useEffect(() => {
+    if (data) {
+      setAllSections(data) // update your local state with the fetched data
     }
-  ]
-}
-
-const MenuPageForm = (props) => {
-  const [formState, setFormState] = useState(defaultMenu)
-  const [{ sectionData, loading, error }, refetch] = useAxios(`${BASE_API_URL}/api/section/`)
-
-  const sectionOptions =
-    sectionData?.map((item) => {
-      return {
-        ...item,
-        label: item.name,
-        key: item.id
-      }
-    }) || []
-
-  const setMenuName = (name) => {
-    setFormState({ ...formState, name })
-  }
-
-  const handleSectionChange = (e) => {
-    console.log(e)
-  }
-
-  const onSubmit = (data) => {
-    console.log(data)
-  }
-
-  const walkMenu = () => {
-    return formState.sections.map((section) => (
-      <div>
-        <MenuPageSection selectedSection={section.name} sectionOptions={sectionOptions} />
-        {section.items.map((item) => {
-          ;<p>{item.name}</p>
-        })}
-      </div>
-    ))
+  }, [data])
+  // handlers to add, edit, delete sections
+  const addMenuSection = () => {
+    setCurrentMenuSections([...currentMenuSections, { title: `Section ${currentMenuSections.length + 1}`, items: [] }])
   }
 
   return (
     <div>
-      <Typography.Title editable={{ onChange: setMenuName, triggerType: ['text', 'icon'] }} level={1} style={{ margin: 0 }}>
-        {formState.name ? formState.name : 'Menu Name'}
-      </Typography.Title>
-      {walkMenu()}
+      {currentMenuSections.map((section, index) => (
+        <MenuSection
+          key={index}
+          data={section}
+          // pass handlers as needed
+        />
+      ))}
+      <button onClick={addMenuSection}>Add Section</button>
     </div>
   )
 }
