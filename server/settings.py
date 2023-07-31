@@ -192,3 +192,6 @@ else:
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+POSITION_STACK_API_KEY = str(os.getenv("POSITION_STACK_API_KEY"))
+TOMTOM_API_KEY = str(os.getenv("TOMTOM_API_KEY"))

@@ -8,6 +8,9 @@ class LocationViewSet(viewsets.ModelViewSet):
     serializer_class = LocationSerializer
     queryset = Location.objects.all()
 
+    def distance(self):
+        pass
+
 
 class MenuViewSet(viewsets.ModelViewSet):
     serializer_class = LocationSerializer
