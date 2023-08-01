@@ -14,8 +14,10 @@ def create_fake_location():
     logo = ContentFile(fake.image(), name=f"{name.lower().replace(' ', '_')}.png")
     address = fake.address()
     phone = fake.phone_number()
+    latitude = 37.780109
+    longitude = -122.400497
 
-    location = Location(name=name, address=address, phone=phone)
+    location = Location(name=name, address=address, phone=phone, latitude=latitude, longitude=longitude)
     location.logo.save(logo.name, logo)
     location.save()
     return location
