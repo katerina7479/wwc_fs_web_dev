@@ -17,8 +17,6 @@ class LocationViewSet(viewsets.ModelViewSet):
         lon = params.get('lon')
         if not (lat or lon):
             Response("Requires latitude and longitude", status.HTTP_400_BAD_REQUEST)
-        lat = lat.replace('\U00002013', '-')
-        lon = lon.replace('\U00002013', '-')
 
         location_model = self.get_object()
         location_address = location_model.address_object()

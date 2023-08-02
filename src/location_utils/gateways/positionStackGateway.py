@@ -6,7 +6,7 @@ POSITION_STACK_API_KEY = settings.POSITION_STACK_API_KEY
 
 
 class PositionStackGateway(object):
-    url = 'https://geocode.maps.co/search'
+    url = 'http://api.positionstack.com/v1/'
 
     def search_by_text(self, query):
         payload = {'access_key': settings.POSITION_STACK_API_KEY, 'query': query}

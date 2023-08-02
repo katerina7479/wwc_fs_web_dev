@@ -102,7 +102,6 @@ class USAddress(object):
         length_meters = summary['lengthInMeters']
         travel_minutes = summary['travelTimeInSeconds'] / 60.0
 
-
         if unit == 'km':
             return length_meters / 1000.0, travel_minutes
         else:
