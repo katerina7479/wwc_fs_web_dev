@@ -2,6 +2,7 @@ import cuid
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.contrib.postgres.fields import ArrayField
+from src.location_utils.us_address import USAddress
 
 from src.models.validators import validate_days_of_week, day_abbreviations
 
@@ -29,9 +30,14 @@ class Location(models.Model):
     deletedAt = models.DateTimeField(null=True, blank=True)
     createdAt = models.DateTimeField(auto_now_add=True)
     updatedAt = models.DateTimeField(auto_now=True)
+    latitude = models.FloatField(null=True)
+    longitude = models.FloatField(null=True)
 
     class Meta:
         db_table = "location"
+
+    def address_object(self):
+        return USAddress(text_address=self.address, latitude=self.latitude, longitude=self.longitude)
 
 
 # Menu model

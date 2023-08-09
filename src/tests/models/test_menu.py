@@ -21,3 +21,9 @@ class LocationTestCase(TestCase):
     def test_location_name(self):
         location = Location.objects.first()
         self.assertEqual(location.name, "Pseudo-Diner")
+
+
+
+
+
+

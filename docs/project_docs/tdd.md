@@ -1,6 +1,7 @@
 # Technical Design Document (TDD)
 
-## 1. Supporting Documents
+## 1. Supp
+orting Documents
 
 [PRD](./prd.md)
 
@@ -9,7 +10,7 @@
 
 [Describe the high-level architecture of the system, including any key components, modules, or layers.]
 
-![Screenshot 2023-06-25 at 6.25.13 PM.png](..%2F..%2F..%2F..%2FDesktop%2FScreenshot%202023-06-25%20at%206.25.13%20PM.png)
+![System Architecture.png](System Architecture.png)
 
 * Django project with Django-rest-framework (EC2 / ECS)
 * Postgres Database (RDS)
@@ -21,13 +22,13 @@
 
 [Present the data model for the system, including entities, relationships, and attributes.]
 
-![Screenshot 2023-06-25 at 6.27.54 PM.png](..%2F..%2F..%2F..%2FDesktop%2FScreenshot%202023-06-25%20at%206.27.54%20PM.png)
+![Data Model.png](Data Model.png)
 
 
 ## 6. Database Design
 
 [Describe the design of the system's database, including tables, indexes, and any specific data storage considerations.]
-![Screenshot 2023-06-25 at 6.28.43 PM.png](..%2F..%2F..%2F..%2FDesktop%2FScreenshot%202023-06-25%20at%206.28.43%20PM.png)
+![Database Design.png](Database Design.png)
 
 ## 5. API Specifications
 [Define the specifications for the system's APIs, including endpoints, request/response formats, and supported methods.]
@@ -95,7 +96,8 @@
 ## 13. Dependencies
 
 [List any external dependencies or third-party libraries that are required for the system.]
-* D
+* Django
+* 
 
 ## 14. Risks and Mitigation Strategies
 
